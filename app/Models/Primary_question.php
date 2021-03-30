@@ -19,7 +19,7 @@ class Primary_question extends Model
         'correct_answer',
         'user_id',
         'video_number',
-        'qestion_level',
+        'question_level',
         'course_id'
     ];
 

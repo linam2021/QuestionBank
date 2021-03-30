@@ -15,14 +15,14 @@ class CreatePrimaryQuestionTable extends Migration
     {
         Schema::create('primary_question', function (Blueprint $table) {
             $table->id();
-            $table->text('question_text');
+            $table->text('question_text')->unique();
             $table->text('answer_a');
             $table->text('answer_b');
             $table->text('answer_c');
-            $table->text('correct_answer');
+            $table->enum('correct_answer',['a','b','c']);
             $table->integer('user_id');
             $table->integer('video_number');
-            $table->integer('qestion_level');
+            $table->enum('question_level',['normal','hard']);
             $table->integer('course_id');
             $table->timestamps();
         });

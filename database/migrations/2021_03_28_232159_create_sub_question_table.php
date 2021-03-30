@@ -15,11 +15,11 @@ class CreateSubQuestionTable extends Migration
     {
         Schema::create('sub_question', function (Blueprint $table) {
             $table->id();
-            $table->text('question_text');
+            $table->text('question_text')->unique();
             $table->text('answer_a');
             $table->text('answer_b');
             $table->text('answer_c');
-            $table->text('correct_answer');
+            $table->enum('correct_answer',['a','b','c']);
             $table->integer('primary_question_id');
 
             $table->timestamps();

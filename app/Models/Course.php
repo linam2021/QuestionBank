@@ -15,7 +15,7 @@ class Course extends Model
 
     public function primary_question ()
     {
-    	return $this->hasMany('App\Models\Primary_question ', 'course_id','id');
+    	return $this->hasMany('App\Models\Primary_question', 'course_id','id');
     }
 
 
