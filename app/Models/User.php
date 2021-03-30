@@ -40,4 +40,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function primary_question ()
+    {
+    	return $this->hasMany('App\Models\Primary_question ', 'user_id', 'id');
+    }
+
+
 }
