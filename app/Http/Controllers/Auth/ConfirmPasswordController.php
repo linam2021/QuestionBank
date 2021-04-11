@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
+
 
 class ConfirmPasswordController extends Controller
 {
@@ -37,4 +40,26 @@ class ConfirmPasswordController extends Controller
     {
         $this->middleware('auth');
     }
-}
+
+    public function confirmPassword(Request $request){
+
+        if (! Hash::check($request->password, $request->user()->password)) {
+            return back()->withErrors([
+                'password' => ['The provided password does not match our records.']
+            ]);
+        }
+        $request->session()->passwordConfirmed();
+
+        return redirect()->intended();
+
+        }
+
+
+
+
+
+
+
+
+    }
+

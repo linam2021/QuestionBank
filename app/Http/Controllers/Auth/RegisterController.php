@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerifyEmail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\VerifyUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -64,10 +68,58 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        //create the verification token
+        $verifUser = new VerifyUser();
+        $verifUser-> user_id = $user->id;
+        $verifUser-> token = Str::random(50);
+        $verifUser->save();
+        //send it by email
+
+        Mail::to($user->email)->send(new VerifyEmail($user));
+
+        return $user;
     }
+
+    protected function registered(Request $request, $user)
+    {
+       $this->guard()->logout();
+
+       return redirect()->route('login')->with([
+
+           'message' => 'Account created, You need to verify your email first please check your inbox'
+       ]);
+    }
+
+    public function verifyEmail($token){
+
+    $verifyUser = verifyUser::where('token',$token)->firstOrFail();
+    $user =$verifyUser ->user;
+
+    if ($user->verified){
+
+        return redirect()->route('login')->with([
+
+            'message' => 'This account has been verified already'
+        ]);
+
+    }else{
+
+        $verifyUser->user->verified = true;
+        $verifyUser->user->save();
+
+
+        return redirect()->route('login')->with([
+
+            'message' => 'Email verified , you con login to the site now'
+        ]);
+    }
+
+    }
+
 }
