@@ -21,7 +21,7 @@ class CreateQuestionsTable extends Migration
             $table->text('answer_c');
             $table->enum('correct_answer',['A','B','C']);
             $table->integer('user_id');
-            $table->integer('video_number');
+            $table->integer('video_number')->nullable();
             $table->enum('question_level',['meduim','hard'])->nullable();
             $table->integer('primary_question_id')->nullable();
             $table->integer('course_id');
