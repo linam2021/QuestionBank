@@ -44,7 +44,7 @@ class User extends Authenticatable
 
     public function primary_question ()
     {
-    	return $this->hasMany('App\Models\Primary_question ', 'user_id', 'id');
+    	return $this->hasMany('App\Models\Primary_question ');
     }
     public function verifyUser(){
         return $this->hasOne('App\Models\VerifyUser');
