@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function showQuestions($id)
     {
         try

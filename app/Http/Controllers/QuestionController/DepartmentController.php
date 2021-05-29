@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Session;
 
 class DepartmentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         try
