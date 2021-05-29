@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VerifyUser extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'user_id';
     public function user(){
         return $this->belongsTo('App\Models\User');
     }
