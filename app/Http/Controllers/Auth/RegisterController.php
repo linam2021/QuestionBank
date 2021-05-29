@@ -92,7 +92,7 @@ class RegisterController extends Controller
 
        return redirect()->route('login')->with([
 
-           'message' => 'Account created, You need to verify your email first please check your inbox'
+           'message' => 'تم إنشاء الحساب، تحتاج إلى التحقق من اييميلك من خلال بريدك الالكتروني'
        ]);
     }
 

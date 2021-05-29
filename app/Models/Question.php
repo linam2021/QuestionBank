@@ -6,12 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Primary_question extends Model
+class Question extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-
         'question_text',
         'answer_a',
         'answer_b',
@@ -20,13 +19,18 @@ class Primary_question extends Model
         'user_id',
         'video_number',
         'question_level',
+        'primary_question_id',
         'course_id'
     ];
 
-
     public function sub_question ()
     {
-    	return $this->hasOne('App\Models\Sub_question', 'primary_question_id','id');
+    	return $this->hasOne('App\Models\Question', 'primary_question_id','id');
+    }
+
+    public function primary_question()
+    {
+    	return $this->belongsTo('App\Models\Question', 'primary_question_id','id');
     }
 
     public function user ()

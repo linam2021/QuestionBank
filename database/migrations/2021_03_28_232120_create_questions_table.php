@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubQuestionTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,18 @@ class CreateSubQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::create('sub_question', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
             $table->text('question_text')->unique();
             $table->text('answer_a');
             $table->text('answer_b');
             $table->text('answer_c');
-            $table->enum('correct_answer',['a','b','c']);
-            $table->integer('primary_question_id');
-
+            $table->enum('correct_answer',['A','B','C']);
+            $table->integer('user_id');
+            $table->integer('video_number');
+            $table->enum('question_level',['meduim','hard'])->nullable();
+            $table->integer('primary_question_id')->nullable();
+            $table->integer('course_id');
             $table->timestamps();
         });
     }
@@ -33,6 +36,6 @@ class CreateSubQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sub_question');
+        Schema::dropIfExists('question');
     }
 }
