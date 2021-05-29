@@ -116,7 +116,7 @@ class RegisterController extends Controller
 
         return redirect()->route('login')->with([
 
-            'message' => 'Email verified , you con login to the site now'
+            'message' => 'تم التحقق من ايميلك، يمكنك تسجيل الدخول إلى الموقع الآن'
         ]);
     }
 
