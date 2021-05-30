@@ -29,8 +29,8 @@ class QuestionController extends Controller
 
             $questions=DB::table('questions')
             ->select('id','question_text','answer_a','answer_b','answer_c','correct_answer','video_number','question_level')
-           // ->where('course_id',$id)
-            //->orderByDesc('coursesid')
+            ->where('course_id',$id)
+            ->orderBy('id')
             ->paginate(10);
 
             return view('layouts.question')->with(['course'=> $course,'questions'=>$questions]);

@@ -258,7 +258,7 @@
                         <thead>
                             <tr>
                             <th scope="col">#</th>
-                            <th scope="col">نص السؤال الاساسي</th>
+                            <th scope="col">نص السؤال </th>
                             <th scope="col">الإجابة A</th>
                             <th scope="col">الإجابة B</th>
                             <th scope="col">الإجابة C</th>
@@ -270,8 +270,19 @@
                         <tbody>
                             @foreach ($questions as $question)
                             @if ($loop->odd)
+                                <tr class="table-secondary">
+                                    <th scope="row">{{$question->id}}-A </th>
+                                    <th scope="row">{{$question->question_text}}</th>
+                                    <th scope="row">{{$question->answer_a}}</th>
+                                    <th scope="row">{{$question->answer_b}}</th>
+                                    <th scope="row">{{$question->answer_c}}</th>
+                                    <th scope="row">{{$question->correct_answer}}</th>
+                                    <th scope="row">{{$question->video_number}}</th>
+                                    <th scope="row">{{$question->question_level}}</th>
+                                </tr>
+                            @else
                             <tr class="table-light">
-                                <th scope="row">{{$question->id}}</th>
+                                <th scope="row">{{$question->id-1}}-B</th>
                                 <th scope="row">{{$question->question_text}}</th>
                                 <th scope="row">{{$question->answer_a}}</th>
                                 <th scope="row">{{$question->answer_b}}</th>
@@ -280,35 +291,8 @@
                                 <th scope="row">{{$question->video_number}}</th>
                                 <th scope="row">{{$question->question_level}}</th>
                             </tr>
-                            @else
-                            <tr>
-                            <td colspan="6">
-                            <table class="table table-secondary">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">نص السؤال الفرعي</th>
-                                        <th scope="col">الإجابة A</th>
-                                        <th scope="col">الإجابة B</th>
-                                        <th scope="col">الإجابة C</th>
-                                        <th scope="col">الإجابة الصحيحة</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr  class="table-light">
-                                        <th scope="row">{{$question->id}}</th>
-                                        <th scope="row">{{$question->question_text}}</th>
-                                        <th scope="row">{{$question->answer_a}}</th>
-                                        <th scope="row">{{$question->answer_b}}</th>
-                                        <th scope="row">{{$question->answer_c}}</th>
-                                        <th scope="row">{{$question->correct_answer}}</th>
-                                    </tr>
-                                </tbody>
-                            </table>
 
-                            </td>
-                        </tr>
-                        @endif
+                            @endif
                         @endforeach
                         </tbody>
                     </table>
