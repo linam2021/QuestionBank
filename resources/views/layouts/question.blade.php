@@ -257,7 +257,7 @@
                 <table class="table table-dark">
                         <thead>
                             <tr>
-                            <th scope="col">#</th>
+                            <th scope="col">رقم السؤال</th>
                             <th scope="col">نص السؤال </th>
                             <th scope="col">الإجابة A</th>
                             <th scope="col">الإجابة B</th>
