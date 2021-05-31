@@ -249,11 +249,13 @@
 </form>
 <br>
 <br>
+@php
+$i = 1 + ($questions->currentpage()-1)*5
+@endphp
 <div class="row justify-content-center">
     <div class="col-md-12">
         <div class="card">
             <div class="card-header"><h2> <b>الأسئلة المضافة</b></h2></div>
-
                 <table class="table table-dark table-bordered">
                         <thead>
                             <tr>
@@ -268,9 +270,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @php
-                            $i = 1
-                            @endphp
                             @foreach ($questions as $question)
                             @if ($loop->odd)
                                 <tr class="table-secondary">
