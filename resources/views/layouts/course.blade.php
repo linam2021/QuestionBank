@@ -68,7 +68,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h2> <b>الدورات المضافة</b></h2></div>
-                    <table class="table table-dark">
+                    <table class="table table-dark table-bordered">
                         <thead>
                         <tr>
                             <th scope="col">#</th>

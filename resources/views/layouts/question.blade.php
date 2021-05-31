@@ -254,7 +254,7 @@
         <div class="card">
             <div class="card-header"><h2> <b>الأسئلة المضافة</b></h2></div>
 
-                <table class="table table-dark">
+                <table class="table table-dark table-bordered">
                         <thead>
                             <tr>
                             <th scope="col">رقم السؤال</th>
