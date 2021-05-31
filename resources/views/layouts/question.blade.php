@@ -268,10 +268,13 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                            $i = 1
+                            @endphp
                             @foreach ($questions as $question)
                             @if ($loop->odd)
                                 <tr class="table-secondary">
-                                    <th scope="row">{{$question->id}}-A </th>
+                                    <th scope="row">{{$i}}-A </th>
                                     <th scope="row">{{$question->question_text}}</th>
                                     <th scope="row">{{$question->answer_a}}</th>
                                     <th scope="row">{{$question->answer_b}}</th>
@@ -282,7 +285,7 @@
                                 </tr>
                             @else
                             <tr class="table-light">
-                                <th scope="row">{{$question->id-1}}-B</th>
+                                <th scope="row">{{$i}}-B</th>
                                 <th scope="row">{{$question->question_text}}</th>
                                 <th scope="row">{{$question->answer_a}}</th>
                                 <th scope="row">{{$question->answer_b}}</th>
@@ -291,7 +294,9 @@
                                 <th scope="row">{{$question->video_number}}</th>
                                 <th scope="row">{{$question->question_level}}</th>
                             </tr>
-
+                            @php
+                            $i++
+                            @endphp
                             @endif
                         @endforeach
                         </tbody>
