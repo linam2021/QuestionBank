@@ -11,6 +11,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
     <!-- Stylesheet -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/bootstrap.rtl.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/all.min.css')}}">
+
 </head>
 <body>
     <div id="app" class="container" >
@@ -46,13 +48,18 @@
                                 </li>
                             @endif
                         @else
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('home') }}">إضافة مسار</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('showCourses') }}">إضافة دورة</a>
+                        </li>
 
                         <li class="nav-item dropdown ml-auto ">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 {{ Auth::user()->name }}
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark dropdown-menu-start" aria-labelledby="navbarDarkDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{route('home')}}">الصفحة الرئيسية </a></li>
                                 <li><a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                               document.getElementById('logout-form').submit();">
@@ -72,15 +79,17 @@
         </nav>
         @yield('content')
         <!-- Footer -->
+        <div class="container">
             <footer class="bg-dark text-center text-white">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2021 Copyright:
-            <a class="text-white" href=#> TG Developers</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
-        <!-- Footer -->
+                <!-- Copyright -->
+                <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2021 Copyright:
+                <a class="text-white" href=#> TG Developers</a>
+                </div>
+                <!-- Copyright -->
+            </footer>
+            <!-- Footer -->
+        </div>
     </div>
 
 
@@ -88,7 +97,7 @@
     <!-- SCRIPTS -->
 
     <script src="{{URL::asset('js/bootstrap.bundle.min.js')}}"></script>
-
+    <script src="{{URL::asset('js/all.min.js')}}"></script>
 </body>
 </html>
 

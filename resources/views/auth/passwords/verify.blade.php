@@ -12,6 +12,6 @@
     <p> To verify your email pleace click the link below </p>
     <hr />
 
-    <a href="{{ url('user/verify',$user->verifyUser->token )}}"> Verify your Emil </a>
+    <a href="{{ url('user/verify',$user->verifyUser->token )}}"> Verify your Email </a>
 </body>
 </html>

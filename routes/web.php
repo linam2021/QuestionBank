@@ -39,3 +39,6 @@ Route::get('/showCourses', [CourseController::class, 'index'])->name('showCourse
 Route::post('/addCourse', [CourseController::class, 'addCourse'])->name('addCourse');
 Route::get('/showQuestions/{id}', [QuestionController::class, 'showQuestions'])->name('showQuestions');
 Route::post('/store', [QuestionController::class, 'store'])->name('store');
+Route::get('/edit/{id}/{page}', [QuestionController::class, 'edit'])->name('edit');
+Route::post('/update/{id}/{page}', [QuestionController::class, 'update'])->name('update');
+Route::get('/delete/{id}', [QuestionController::class, 'delete'])->name('delete');

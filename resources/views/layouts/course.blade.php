@@ -1,24 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        @if (\Session::has('success'))
-            <div class="alert alert-success">
-                <p>{{\Session::get('success')}}</p>
-            </div>
-        @endif
-        @if (\Session::has('error'))
-        <div class="alert alert-danger">
-            <p>{{\Session::get('error')}}</p>
-        </div>
-        @endif
-        <br>
+    <div class="row justify-content-center">
         <form action="{{ route('addCourse') }}" method="POST">
         @csrf
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header"><h2> <b>إضافة دورة جديدة </b></h2></div>
+                        @if (\Session::has('success'))
+                        <div class="alert alert-success">
+                            <p>{{\Session::get('success')}}</p>
+                        </div>
+                        @endif
+                        @if (\Session::has('error'))
+                        <div class="alert alert-danger">
+                            <p>{{\Session::get('error')}}</p>
+                        </div>
+                        @endif
+                        <br>
                         <div class="col-md-12">
                             <div class="col-md-8 my-2">
                                 <label for="exampleFormControlInput1" class="form-label">اسم المسار</label>
@@ -49,8 +49,8 @@
                             <div class="col-md-12 text-center">
                                 <div class="form-group row mb-0 ">
                                     <div class="col-md-12 text-center my-2">
-                                        <button type="submit" class="btn btn-dark">
-                                            إضافة
+                                        <button type="submit" class="btn btn-outline-dark">
+                                            <a> <i class="fa fa-plus"> </i></a>
                                         </button>
                                     </div>
                                 </div>
@@ -68,14 +68,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h2> <b>الدورات المضافة</b></h2></div>
-                    <table class="table table-dark table-bordered">
+                    <table class="table table-bordered">
                         <thead>
-                        <tr>
-                            <th scope="col">#</th>
+                        <tr class="table-secondary text-center">
+                            <th scope="col">الرقم</th>
                             <th scope="col">اسم المسار</th>
                             <th scope="col">اسم الدورة</th>
                             <th scope="col">رابط الدورة</th>
-                            <th scope="col"></th>
+                            <th scope="col">إضافة أسئلة</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -85,8 +85,8 @@
                                     <td>{{$course->department_name}}</td>
                                     <td>{{$course->course_name}}</td>
                                     <td>{{$course->course_url}}</td>
-                                    <td>
-                                        <a href="{{route('showQuestions', ['id'=>$course->id])}}" class="btn btn-dark"> إضافة أسئلة</a>
+                                    <td class="text-center">
+                                        <a  class="text-dark" href="{{route('showQuestions', ['id'=>$course->id])}}"> <i class="fa fa-plus"> </i></a>
                                     </td>
                                 </tr>
                             @endforeach
