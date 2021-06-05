@@ -28,6 +28,7 @@ class QuestionController extends Controller
             ->first();
 
             $questions =Question::where('course_id',$id)
+            ->orderby('id')
             ->paginate(10);
 
             return view('layouts.question')->with(['course'=> $course,'questions'=>$questions]);
