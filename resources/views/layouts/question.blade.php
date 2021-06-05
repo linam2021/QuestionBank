@@ -284,7 +284,7 @@
                                 <th scope="col">الإجابة الصحيحة</th>
                                 <th scope="col">رقم الفيديو</th>
                                 <th scope="col">مستوى السؤال</th>
-                                <th scope="col"></th>
+                                <th scope="col" class="text-secondary">__________</th>
                             </tr>
                         </thead>
                         <tbody>
