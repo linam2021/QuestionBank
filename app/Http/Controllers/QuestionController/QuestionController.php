@@ -218,7 +218,7 @@ class QuestionController extends Controller
                 if ($request->has('sub_question_image')) {
                     $newImageName=time() . '-' . $request->sub_question_image->getClientOriginalName();
                     $request->sub_question_image->move(public_path("/question_images"),$newImageName);
-                    $subquestion->question_text=$input['sub_question_text'];
+                    $imageURL=url('/question_images'.'/'.$newImageName);
                     $subquestion->question_image=$imageURL;
                 }
                 $subquestion->question_text=$input['sub_question_text'];
