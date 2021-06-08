@@ -50,19 +50,29 @@
     <div class="col-md-6">
         <div class="card">
             <div class="card-header"><h2> <b>المسارات المضافة</b></h2></div>
+                @php
+                    $i = 1
+                @endphp
                 <table class="table table-bordered">
                     <thead>
                     <tr class="table-secondary">
                         <th scope="col">الرقم</th>
                         <th scope="col">اسم المسار</th>
+                        <th scope="col">حذف مسار</th>
                     </tr>
                     </thead>
                     <tbody>
                         @foreach ($departments as $dept)
                             <tr class="table-light">
-                                <th scope="row">{{$dept->id}}</th>
+                                <th scope="row">{{$i}}</th>
                                 <td>{{$dept->department_name}}</td>
+                                <td class="text-center">
+                                    <a class="text-danger" href="{{route('deleteDept',['id'=>$dept->id])}}"> <i class="fas fa-trash-alt"></i></a>
+                                </td>
                             </tr>
+                            @php
+                            $i++
+                            @endphp
                         @endforeach
                     </tbody>
                 </table>

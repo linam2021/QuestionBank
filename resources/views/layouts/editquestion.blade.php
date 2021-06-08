@@ -53,11 +53,11 @@
                                 @error('question_text')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
-                                <label for="formFile" class="form-label">صورة السؤال الرئيسي</label>
+                                {{-- <label for="formFile" class="form-label">صورة السؤال الرئيسي</label>
                                 <input class="form-control" type="file" name="question_image" value={{URL::asset($question->question_image)}}>
                                 @error('question_image')
                                     <p class="text-danger">{{$message}}</p>
-                                @enderror
+                                @enderror --}}
                                 <div class="row">
                                     <div class="col-md-2 mt-3">
                                     الخيارات
@@ -143,11 +143,11 @@
                                 @error('sub_question_text')
                                     <p class="text-danger">{{$message}}</p>
                                 @enderror
-                                <label for="formFile" class="form-label">صورة السؤال الفرعي</label>
+                                {{-- <label for="formFile" class="form-label">صورة السؤال الفرعي</label>
                                 <input class="form-control" type="file" name="sub_question_image">
                                 @error('sub_question_image')
                                     <p class="text-danger">{{$message}}</p>
-                                @enderror
+                                @enderror --}}
                                 <div class="row">
                                     <div class="col-md-2 mt-3">
                                     الخيارات

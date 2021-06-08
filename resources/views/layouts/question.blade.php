@@ -74,11 +74,11 @@
                             @error('question_text')
                                 <p class="text-danger">{{$message}}</p>
                             @enderror
-                            <label for="formFile" class="form-label">صورة السؤال الرئيسي</label>
+                            {{-- <label for="formFile" class="form-label">صورة السؤال الرئيسي</label>
                             <input class="form-control" type="file" name="question_image">
                             @error('question_image')
                                 <p class="text-danger">{{$message}}</p>
-                            @enderror
+                            @enderror --}}
                             <div class="row">
                                 <div class="col-md-2 mt-3">
                                 الخيارات
@@ -163,11 +163,11 @@
                             @error('sub_question_text')
                                 <p class="text-danger">{{$message}}</p>
                             @enderror
-                            <label for="formFile" class="form-label">صورة السؤال الفرعي</label>
+                            {{-- <label for="formFile" class="form-label">صورة السؤال الفرعي</label>
                             <input class="form-control" type="file" name="sub_question_image">
                             @error('sub_question_image')
                                 <p class="text-danger">{{$message}}</p>
-                            @enderror
+                            @enderror --}}
                             <div class="row">
                                 <div class="col-md-2 mt-3">
                                 الخيارات
@@ -277,63 +277,71 @@
                                 <th scope="col">الرقم</th>
                                 <th scope="col">اسم المستخدم</th>
                                 <th scope="col">نص السؤال </th>
-                                <th scope="col">رابط الصورة</th>
+                                {{-- <th scope="col">رابط الصورة</th> --}}
                                 <th scope="col">الإجابة A</th>
                                 <th scope="col">الإجابة B</th>
                                 <th scope="col">الإجابة C</th>
                                 <th scope="col">الإجابة الصحيحة</th>
                                 <th scope="col">رقم الفيديو</th>
                                 <th scope="col">مستوى السؤال</th>
-                                <th scope="col" class="text-secondary">__________</th>
+                                <th scope="col" class="text-secondary"><pre>        </pre></th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($questions as $question)
                             @if ($loop->odd)
-                                <tr class="table-light">
-                                    <th scope="row">{{$i}}-A </th>
-                                    <th scope="row">{{$question->user->name}}</th>
-                                    <th scope="row">{{$question->question_text}}</th>
-                                    @if ($question->question_image !=null)
-                                        <th class="text-center" scope="row"><a href="{{URL::asset($question->question_image)}}" class="link-primary">Link</a></th>
-                                    @else
-                                        <th scope="row"></th>
-                                    @endif
-                                    <th scope="row">{{$question->answer_a}}</th>
-                                    <th scope="row">{{$question->answer_b}}</th>
-                                    <th scope="row">{{$question->answer_c}}</th>
-                                    <th scope="row">{{$question->correct_answer}}</th>
-                                    <th scope="row">{{$question->video_number}}</th>
-                                    <th scope="row">{{$question->question_level}}</th>
-                                    <th class="text-center">
-                                        <div class="row" >
-                                            <div class="col">
-                                                <a href="{{route('edit', ['id'=>$question->id,'page'=>$questions->currentpage()])}}" > <i class="fas fa-edit"></i></a>
+                                @if ($i%2==0)
+                                    <tr class="table-info">
+                                @else
+                                    <tr class="table-light">
+                                @endif
+                                        <th scope="row">{{$i}}-A </th>
+                                        <td scope="row">{{$question->user->name}}</td>
+                                        <td scope="row">{{$question->question_text}}</td>
+                                        {{-- @if ($question->question_image !=null)
+                                            <th class="text-center" scope="row"><a href="{{URL::asset($question->question_image)}}" class="link-primary">Link</a></th>
+                                        @else
+                                            <th scope="row"></th>
+                                        @endif --}}
+                                        <td scope="row">{{$question->answer_a}}</td>
+                                        <td scope="row">{{$question->answer_b}}</td>
+                                        <td scope="row">{{$question->answer_c}}</td>
+                                        <td scope="row">{{$question->correct_answer}}</td>
+                                        <td scope="row">{{$question->video_number}}</td>
+                                        <td scope="row">{{$question->question_level}}</td>
+                                        <td class="text-center">
+                                            <div class="row" >
+                                                <div class="col">
+                                                    <a href="{{route('edit', ['id'=>$question->id,'page'=>$questions->currentpage()])}}" > <i class="fas fa-edit"></i></a>
+                                                </div>
+                                                <div class="col">
+                                                    <a class="text-danger" href="{{route('delete',['id'=>$question->id])}}" > <i class="fas fa-trash-alt"></i></a>
+                                                </div>
                                             </div>
-                                            <div class="col">
-                                                <a class="text-danger" href="{{route('delete',['id'=>$question->id])}}" > <i class="fas fa-trash-alt"></i></a>
-                                            </div>
-                                        </div>
-                                    </th>
-                                </tr>
+                                        </td>
+                                    </tr>
                             @else
-                            <tr class="table-secondary">
-                                <th scope="row">{{$i}}-B </th>
-                                    <th scope="row">{{$question->user->name}}</th>
-                                    <th scope="row">{{$question->question_text}}</th>
-                                    @if ($question->question_image !=null)
-                                        <th scope="row" class="text-center"><a href="{{URL::asset($question->question_image)}}" class="link-primary">Link</a></th>
-                                    @else
-                                        <th scope="row"></th>
-                                    @endif
-                                    <th scope="row">{{$question->answer_a}}</th>
-                                    <th scope="row">{{$question->answer_b}}</th>
-                                    <th scope="row">{{$question->answer_c}}</th>
-                                    <th scope="row">{{$question->correct_answer}}</th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                                    <th scope="row"></th>
-                            </tr>
+                                @if ($i%2==0)
+                                    <tr class="table-info">
+                                @else
+                                    <tr class="table-light">
+                                @endif
+                                        <td scope="row">{{$i}}-B </td>
+                                        <td scope="row">{{$question->user->name}}</td>
+                                        <td scope="row">{{$question->question_text}}</td>
+                                        {{-- @if ($question->question_image !=null)
+                                            <th scope="row" class="text-center"><a href="{{URL::asset($question->question_image)}}" class="link-primary">Link</a></th>
+                                        @else
+                                            <th scope="row"></th>
+                                        @endif --}}
+                                        <td scope="row">{{$question->answer_a}}</td>
+                                        <td scope="row">{{$question->answer_b}}</td>
+                                        <td scope="row">{{$question->answer_c}}</td>
+                                        <td scope="row">{{$question->correct_answer}}</td>
+                                        <td scope="row"></td>
+                                        <td scope="row"></td>
+                                        <td scope="row"></td>
+                                </tr>
                             @php
                             $i++
                             @endphp
@@ -347,7 +355,7 @@
                     </div>
                 </div>
                 @else
-                    <div class="alert alert-danger">
+                    <div class="alert alert-info">
                         <p>لا يوجد أسئلة مضافة ضمن هذه الدورة</p>
                     </div>
                 @endif

@@ -45,7 +45,7 @@ class QuestionController extends Controller
             $input = $request->all();
             $validator = Validator::make($input,[
                 'question_text'=>'required|unique:questions,question_text',
-                'question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
+                // 'question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
                 'answer_a'=>'required',
                 'answer_b'=>'required',
                 'answer_c'=>'required',
@@ -54,7 +54,7 @@ class QuestionController extends Controller
                 'question_level'=>'required',
                 'course_id'=>'required',
                 'sub_question_text'=>'required|different:question_text|unique:questions,question_text',
-                'sub_question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
+                // 'sub_question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
                 'sub_answer_a'=>'required',
                 'sub_answer_b'=>'required',
                 'sub_answer_c'=>'required',
@@ -78,8 +78,8 @@ class QuestionController extends Controller
             }
             else
             {
-                if (is_null($request->question_image))
-                {
+                // if (is_null($request->question_image))
+                // {
                     $addPQues=Question::create([
                         'question_text'=>$request->question_text,
                         'answer_a'=>$request->answer_a,
@@ -91,27 +91,27 @@ class QuestionController extends Controller
                         'question_level'=>$request->question_level,
                         'course_id'=>$request->course_id
                     ]);
-                }
-                else
-                {
-                    $newImageName=time() . '-' . $request->question_image->getClientOriginalName();
-                    $request->question_image->move(public_path("/question_images"),$newImageName);
-                    $imageURL=url('/question_images'.'/'.$newImageName);
-                    $addPQues=Question::create([
-                        'question_text'=>$request->question_text,
-                        'question_image'=> $imageURL,
-                        'answer_a'=>$request->answer_a,
-                        'answer_b'=>$request->answer_b,
-                        'answer_c'=>$request->answer_c,
-                        'correct_answer'=>$request->correct_answer,
-                        'user_id'=>$user_id,
-                        'video_number'=>$request->video_number,
-                        'question_level'=>$request->question_level,
-                        'course_id'=>$request->course_id
-                    ]);
-                }
-                if (is_null($request->sub_question_image))
-                {
+                // }
+                // else
+                // {
+                //     $newImageName=time() . '-' . $request->question_image->getClientOriginalName();
+                //     $request->question_image->move(public_path("/question_images"),$newImageName);
+                //     $imageURL=url('/question_images'.'/'.$newImageName);
+                //     $addPQues=Question::create([
+                //         'question_text'=>$request->question_text,
+                //         'question_image'=> $imageURL,
+                //         'answer_a'=>$request->answer_a,
+                //         'answer_b'=>$request->answer_b,
+                //         'answer_c'=>$request->answer_c,
+                //         'correct_answer'=>$request->correct_answer,
+                //         'user_id'=>$user_id,
+                //         'video_number'=>$request->video_number,
+                //         'question_level'=>$request->question_level,
+                //         'course_id'=>$request->course_id
+                //     ]);
+                // }
+                // if (is_null($request->sub_question_image))
+                // {
                     $addSubQues=Question::create([
                         'question_text'=>$request->sub_question_text,
                         'answer_a'=>$request->sub_answer_a,
@@ -122,24 +122,24 @@ class QuestionController extends Controller
                         'primary_question_id'=>$addPQues->id,
                         'course_id'=>$request->course_id
                     ]);
-                }
-                else
-                {
-                    $newImageName=time() . '-' . $request->sub_question_image->getClientOriginalName();
-                    $request->sub_question_image->move(public_path("/question_images"),$newImageName);
-                    $imageURL=url('/question_images'.'/'.$newImageName);
-                    $addSubQues=Question::create([
-                        'question_text'=>$request->sub_question_text,
-                        'question_image'=> $imageURL,
-                        'answer_a'=>$request->sub_answer_a,
-                        'answer_b'=>$request->sub_answer_b,
-                        'answer_c'=>$request->sub_answer_c,
-                        'correct_answer'=>$request->sub_correct_answer,
-                        'user_id'=>$user_id,
-                        'primary_question_id'=>$addPQues->id,
-                        'course_id'=>$request->course_id
-                    ]);
-                }
+                // }
+                // else
+                // {
+                //     $newImageName=time() . '-' . $request->sub_question_image->getClientOriginalName();
+                //     $request->sub_question_image->move(public_path("/question_images"),$newImageName);
+                //     $imageURL=url('/question_images'.'/'.$newImageName);
+                //     $addSubQues=Question::create([
+                //         'question_text'=>$request->sub_question_text,
+                //         'question_image'=> $imageURL,
+                //         'answer_a'=>$request->sub_answer_a,
+                //         'answer_b'=>$request->sub_answer_b,
+                //         'answer_c'=>$request->sub_answer_c,
+                //         'correct_answer'=>$request->sub_correct_answer,
+                //         'user_id'=>$user_id,
+                //         'primary_question_id'=>$addPQues->id,
+                //         'course_id'=>$request->course_id
+                //     ]);
+                // }
             return redirect()->route('showQuestions', ['id'=>$request->course_id])->with('success','تم إضافة السؤالين الأساسي والفرعي بنجاح');
             }
         }catch (\Throwable $th) {
@@ -181,7 +181,7 @@ class QuestionController extends Controller
             $input = $request->all();
             $validator = Validator::make($input,[
                 'question_text'=>'required',
-                'question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
+                // 'question_image'=>'nullable|mimes:jpg,jpeg,png|max:5048',
                 'answer_a'=>'required',
                 'answer_b'=>'required',
                 'answer_c'=>'required',
@@ -200,12 +200,12 @@ class QuestionController extends Controller
             }
             else
             {
-                if ($request->has('question_image')) {
-                    $newImageName=time() . '-' . $request->question_image->getClientOriginalName();
-                    $request->question_image->move(public_path("/question_images"),$newImageName);
-                    $imageURL=url('/question_images'.'/'.$newImageName);
-                    $question->question_image=$imageURL;
-                }
+                // if ($request->has('question_image')) {
+                //     $newImageName=time() . '-' . $request->question_image->getClientOriginalName();
+                //     $request->question_image->move(public_path("/question_images"),$newImageName);
+                //     $imageURL=url('/question_images'.'/'.$newImageName);
+                //     $question->question_image=$imageURL;
+                // }
                 $question->question_text=$input['question_text'];
                 $question->answer_a=$input['answer_a'];
                 $question->answer_b=$input['answer_b'];
@@ -215,12 +215,12 @@ class QuestionController extends Controller
                 $question->correct_answer=$input['correct_answer'];
                 $question->question_level=$input['question_level'];
                 $question->save();
-                if ($request->has('sub_question_image')) {
-                    $newImageName=time() . '-' . $request->sub_question_image->getClientOriginalName();
-                    $request->sub_question_image->move(public_path("/question_images"),$newImageName);
-                    $imageURL=url('/question_images'.'/'.$newImageName);
-                    $subquestion->question_image=$imageURL;
-                }
+                // if ($request->has('sub_question_image')) {
+                //     $newImageName=time() . '-' . $request->sub_question_image->getClientOriginalName();
+                //     $request->sub_question_image->move(public_path("/question_images"),$newImageName);
+                //     $imageURL=url('/question_images'.'/'.$newImageName);
+                //     $subquestion->question_image=$imageURL;
+                // }
                 $subquestion->question_text=$input['sub_question_text'];
                 $subquestion->answer_a=$input['sub_answer_a'];
                 $subquestion->answer_b=$input['sub_answer_b'];

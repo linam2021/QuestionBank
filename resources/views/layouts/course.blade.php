@@ -68,6 +68,9 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><h2> <b>الدورات المضافة</b></h2></div>
+                    @php
+                        $i = 1
+                    @endphp
                     <table class="table table-bordered">
                         <thead>
                         <tr class="table-secondary text-center">
@@ -75,20 +78,30 @@
                             <th scope="col">اسم المسار</th>
                             <th scope="col">اسم الدورة</th>
                             <th scope="col">رابط الدورة</th>
-                            <th scope="col">إضافة أسئلة</th>
+                            <th scope="col"><pre>        </pre></th>
                         </tr>
                         </thead>
                         <tbody>
                             @foreach ($courses as $course)
                                 <tr class="table-light">
-                                    <th scope="row">{{$course->id}}</th>
+                                    <th scope="row">{{$i}}</th>
                                     <td>{{$course->department_name}}</td>
                                     <td>{{$course->course_name}}</td>
                                     <td>{{$course->course_url}}</td>
                                     <td class="text-center">
-                                        <a  class="text-dark" href="{{route('showQuestions', ['id'=>$course->id])}}"> <i class="fa fa-plus"> </i></a>
+                                        <div class="row" >
+                                            <div class="col">
+                                                <a  class="text-dark" href="{{route('showQuestions', ['id'=>$course->id])}}"> <i class="fa fa-plus"> </i></a>
+                                            </div>
+                                            <div class="col">
+                                                <a class="text-danger" href="{{route('deleteCourse',['id'=>$course->id])}}" > <i class="fas fa-trash-alt"></i></a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
+                                @php
+                                $i++
+                                @endphp
                             @endforeach
                         </tbody>
                     </table>

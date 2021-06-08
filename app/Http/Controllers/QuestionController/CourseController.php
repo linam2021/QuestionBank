@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Course;
+use App\Models\Question;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -65,6 +66,22 @@ class CourseController extends Controller
             Session::flash('course_url', $request->course_url);
             Session::flash('department_id', $request->department_id);
             return redirect()->route('showCourses')->with('error',$th->getMessage());
+        }
+    }
+
+    public function deleteCourse($id)
+    {
+        try
+        {
+            $course =Course::where('id' , $id )->first();
+            $question=Question::where('course_id',$id)->get();
+            if($question->count()>0)
+                return redirect()->back()->with('error','هذه الدورة تتضمن أسئلة، لا يمكنك حذفها إلا بعد حذف جميع الأسئلة منها');
+            else
+                $course->delete();
+            return redirect()->back()->with('success','تم حذف الدورة بنجاح');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error',$th->getMessage());
         }
     }
  }

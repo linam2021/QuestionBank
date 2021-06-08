@@ -34,11 +34,15 @@ Route::post('/register', [App\Http\Controllers\Auth\RegisterController::class, '
 
 Route::get('/showDepartments', [DepartmentController::class, 'index'])->name('showDepartments');
 Route::post('/addDepartment', [DepartmentController::class, 'addDepartment'])->name('addDepartment');
+Route::get('/deleteDept/{id}', [DepartmentController::class, 'deleteDept'])->name('deleteDept');
 
 Route::get('/showCourses', [CourseController::class, 'index'])->name('showCourses');
 Route::post('/addCourse', [CourseController::class, 'addCourse'])->name('addCourse');
+Route::get('/deleteCourse/{id}', [CourseController::class, 'deleteCourse'])->name('deleteCourse');
+
 Route::get('/showQuestions/{id}', [QuestionController::class, 'showQuestions'])->name('showQuestions');
 Route::post('/store', [QuestionController::class, 'store'])->name('store');
 Route::get('/edit/{id}/{page}', [QuestionController::class, 'edit'])->name('edit');
 Route::post('/update/{id}/{page}', [QuestionController::class, 'update'])->name('update');
 Route::get('/delete/{id}', [QuestionController::class, 'delete'])->name('delete');
+

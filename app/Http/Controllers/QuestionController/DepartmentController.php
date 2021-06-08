@@ -5,8 +5,8 @@ namespace App\Http\Controllers\QuestionController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Department;
+use App\Models\Course;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
@@ -53,6 +53,22 @@ class DepartmentController extends Controller
         } catch (\Throwable $th) {
             Session::flash('department_name', $request->department_name);
             return redirect()->route('showDepartments')->with('error',$th->getMessage());
+        }
+    }
+
+    public function deleteDept($id)
+    {
+        try
+        {
+            $department =Department::where('id' , $id )->first();
+            $course=Course::where('department_id',$id)->get();
+            if($course->count()>0)
+                return redirect()->back()->with('error','هذا المسار يتضمن دورات، لا يمكنك حذفه إلا بعد حذف جميع الدورات منه');
+            else
+                $department->delete();
+            return redirect()->back()->with('success','تم حذف المسار بنجاح');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('error',$th->getMessage());
         }
     }
 }
